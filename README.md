@@ -36,5 +36,6 @@ Apply these three lines in main CSS file
   - after that from sign-in method in firebase site you can enable the email/passeord verification.
 
 # Authentication 
-
-  - 
+# Unsubscribe the component for the good coding practice
+# Scrict mode 
+ - because of the react strict mode sometime in development mode it shows the result twice to check the  inconsitency.

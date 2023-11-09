@@ -3,12 +3,12 @@ import Header from "./Header";
 import { checkValidData } from "../utils/Validate";
 import { createUserWithEmailAndPassword,signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+import {USER_AVATAR} from '../utils/constants'
+
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate()
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
@@ -26,14 +26,11 @@ const Login = () => {
 createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
   .then((userCredential) => {
     const user = userCredential.user;
-    console.log("user Sign up" , user)
     updateProfile(user, {
       displayName: name.current.value,
-      photoURL: "https://avatars.githubusercontent.com/u/12824231?v=4",
+      photoURL: USER_AVATAR,
     })
     .then(()=>{
-      console.log("inside then")
-      navigate('/browse')
     })
     .catch(()=>{
       setErrorMessage(message)
@@ -50,8 +47,6 @@ createUserWithEmailAndPassword(auth, email.current.value, password.current.value
       signInWithEmailAndPassword(auth, email.current.value, password.current.value)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log("user Sign In" , user);
-        navigate('/browse')
       })
       .catch((error) => {
         const errorCode = error.code;
