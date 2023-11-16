@@ -2,9 +2,7 @@ import { useSelector } from "react-redux"
 import MovieList from "./MovieList"
 
 const SecondrayContainer = () => {
-    // console.log("helloo")
     const movies = useSelector(store=> store.movies)
-    console.log("movies" ,movies )
     return(  
         movies.nowPlayingMovies  && (
         <div className="bg-black">   
